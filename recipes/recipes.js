@@ -21,3 +21,12 @@ exports.single = function(req, res) {
 		res.status(404).render('error.ejs', {title: 'Recipe Not Found'});
 	}
 };
+
+exports.suggest = function(req, res) {
+	res.render('suggest_result.ejs', {
+		title: 'Clever Kitchens - Thanks!',
+		name: req.body.name,
+		ingredients: req.body.ingredients,
+		directions: req.body.directions
+	});
+};
