@@ -22,7 +22,19 @@ app.get('/recipes', function(req, res) {
 });
 
 app.get('/recipes/:title', function(req, res) {
-	res.send('<h1>' + req.params.title + '</h1>');
+	// res.send('<h1>' + req.params.title + '</h1>');
+	var data = recipes.filter(function(recipe) {
+		return (recipe.url === req.params.title);
+	});
+
+	if(data.length > 0) {
+		data = data[0];
+		data.title = 'Clever Kitchens - Recipes';
+
+		res.render('recipe.ejs', data);
+	} else {
+		res.status(404).render('error.ejs', { title: 'Recipe Not Found'})
+	}
 });
 
 app.get('/*', function(req, res) {
