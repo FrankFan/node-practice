@@ -61,5 +61,13 @@ $ function hello(name) { return name + ' world';}
 $ sudo npm install node-dev
 $ node-dev script.js
 # 修改源文件后可以及时刷新，不用重新编译，提高效率
+
+$ npm install name # 安装npm包
+$ npm install # 根据package.json依赖安装包
+$ npm serch | grep name # 查找npm包
+$ npm update # 更新npm包
+$ npm prune  # 清理不需要的npm依赖包 
 ```
+
+
 
