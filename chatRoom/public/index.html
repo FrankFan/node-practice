@@ -4,6 +4,17 @@
 	<meta charset="UTF-8">
 	<title>chat room</title>
 	<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+	<script>
+		var socket = io.connect('http://localhost:3000');
+		
+		socket.on('entrance', function(data) {
+			document.write('<p>' + data.message + '</p>');
+		});
+
+		socket.on('exit', function(data) {
+			document.write('<p>' + data.message + '</p>');
+		});
+	</script>
 </head>
 <body>
 	<h1>Chat Room</h1>
