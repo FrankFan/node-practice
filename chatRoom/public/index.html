@@ -4,7 +4,14 @@
 	<meta charset="UTF-8">
 	<title>chat room</title>
 	<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+	<script src="jquery.js"></script>
 	<script>
+		jQuery(document).ready(function(){
+			var log_chat_message = function(message) {
+				var li = $('<li />').text(message);
+				$('#chat_log').append(li);
+			}
+		});
 		var socket = io.connect('http://localhost:3000');
 		
 		socket.on('entrance', function(data) {
@@ -18,9 +25,44 @@
 		socket.on('chat', function(data) {
 			document.write('<p>' + data.message + '</p>');
 		});
+
+		$('#chat_box').keypress(function(event) {
+			if(event.which == 13) {
+				socket.emit('chat', {message: $('#chat_box').val()})
+				$('#chat_box').val('');
+			}
+		});
 	</script>
+	<style>
+		div#chatrooom {
+			display: block;
+			height: 300px;
+			border: 1px solid #999;
+			overflow: auto;
+			width: 100%;
+			margin-bottom: 10px;
+			position: relative;
+		}
+
+		ul#chat_log {
+			list-style: none;
+			position: absolute;
+			bottom: 0;
+		}
+
+		input#chat_box {
+			width: 99%;
+		}
+	</style>
 </head>
 <body>
 	<h1>Chat Room</h1>
+
+	<div id="chatroom">
+		<ul id="chat_log">
+		</ul>
+	</div>
+
+	<input type="text" name="chat_box" value="" id="chat_box" placeholder="type to chat...">
 </body>
 </html>
