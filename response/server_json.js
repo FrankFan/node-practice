@@ -12,4 +12,6 @@ var app = connect()
 		res.setHeader('Server', 'X');
 		res.end(JSON.stringify(my_data));
 	})
-	.listen(3000);
+	.listen(3000, function() {
+		console.log('running...');
+	});

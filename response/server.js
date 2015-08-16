@@ -7,4 +7,6 @@ var app = connect()
 		res.statusCode = 403; // 500
 		res.end('Forbidden');
 	})
-	.listen(3000);
+	.listen(3000, function() {
+		console.log('running at http://localhost:3000/');
+	});
