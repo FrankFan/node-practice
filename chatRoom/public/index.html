@@ -7,30 +7,40 @@
 	<script src="jquery.js"></script>
 	<script>
 		jQuery(document).ready(function(){
-			var log_chat_message = function(message) {
-				var li = $('<li />').text(message);
-				$('#chat_log').append(li);
+			var log_chat_message = function(message, type) {
+				var li = jQuery('<li />').text(message);
+
+
+				if (type === 'system') {
+					li.css({'font-weight': 'bold'});
+				} else if (type === 'leave') {
+					li.css({'font-weight': 'bold', 'color': '#F00'});
+				}
+
+				jQuery('#chat_log').append(li);
 			}
-		});
-		var socket = io.connect('http://localhost:3000');
 		
-		socket.on('entrance', function(data) {
-			document.write('<p>' + data.message + '</p>');
-		});
+			var socket = io.connect('http://localhost:3000');
+			
+			socket.on('entrance', function(data) {
+				log_chat_message(data.message);
+			});
 
-		socket.on('exit', function(data) {
-			document.write('<p>' + data.message + '</p>');
-		});
+			socket.on('exit', function(data) {
+				log_chat_message(data.message);
+			});
 
-		socket.on('chat', function(data) {
-			document.write('<p>' + data.message + '</p>');
-		});
+			socket.on('chat', function(data) {
+				log_chat_message(data.message);
+			});
 
-		jQuery('#chat_box').keypress(function(event) {
-			if(event.which == 13) {
-				socket.emit('chat', {message: $('#chat_box').val()})
-				$('#chat_box').val('');
-			}
+			jQuery('#chat_box').keypress(function(event) {
+				if(event.which == 13) {
+					socket.emit('chat', {message: jQuery('#chat_box').val()})
+					jQuery('#chat_box').val('');
+				}
+			});
+
 		});
 	</script>
 	<style>
