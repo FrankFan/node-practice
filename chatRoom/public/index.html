@@ -23,15 +23,15 @@
 			var socket = io.connect('http://localhost:3000');
 			
 			socket.on('entrance', function(data) {
-				log_chat_message(data.message);
+				log_chat_message(data.message, 'system');
 			});
 
 			socket.on('exit', function(data) {
-				log_chat_message(data.message);
+				log_chat_message(data.message, 'leave');
 			});
 
 			socket.on('chat', function(data) {
-				log_chat_message(data.message);
+				log_chat_message(data.message, 'normal');
 			});
 
 			jQuery('#chat_box').keypress(function(event) {
