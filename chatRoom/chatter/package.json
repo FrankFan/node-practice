@@ -1,0 +1,14 @@
+{
+	"name": "chatter",
+	"version": "1.0.0",
+	"main": "index",
+	"scripts": {
+	},
+	"dependencies": {
+	},
+	"author": "FrankFan",
+	"liciense": "BSD",
+	"engines": {
+		"node": "*"
+	}
+}
