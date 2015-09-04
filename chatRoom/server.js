@@ -1,5 +1,6 @@
 var io = require('socket.io'),
-	connect = require('connect');
+	connect = require('connect'),
+	chatter = require('chatter');
 
 var app = connect()
 	.use(connect.static('public'))
