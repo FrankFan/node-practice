@@ -12,10 +12,10 @@ function start(route, handle) {
       'Content-Type': 'text/plain'
     });
 
-    const content = route(handle, pathname);
+    const content = route(handle, pathname, response);
 
-    response.write(content);
-    response.end();
+    // response.write(content);
+    // response.end();
   }
 
   http.createServer(onRequest).listen(PORT);
