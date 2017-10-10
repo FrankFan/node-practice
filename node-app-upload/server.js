@@ -1,6 +1,8 @@
 const http = require('http');
 const url = require('url');
 
+const PORT = 9000;
+
 function start(route, handle) {
   function onRequest(request, response) {
     const pathname = url.parse(request.url).pathname;
@@ -16,8 +18,8 @@ function start(route, handle) {
     response.end();
   }
 
-  http.createServer(onRequest).listen(9000);
-  console.log('Server has started.');
+  http.createServer(onRequest).listen(PORT);
+  console.log('Server has started. visit http://localhost:' + PORT);
 }
 
 exports.start = start;
