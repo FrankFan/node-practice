@@ -1,6 +1,6 @@
 /*
 * $ node server.js
-* http://localhost:300/
+* http://localhost:3000/
 *
 */
 var http = require('http');
