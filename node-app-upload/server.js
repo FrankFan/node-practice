@@ -5,14 +5,21 @@ const PORT = 9000;
 
 function start(route, handle) {
   function onRequest(request, response) {
+    let postData = '';
     const pathname = url.parse(request.url).pathname;
     console.log('Request for ' + pathname + ' revieved.');
 
-    response.writeHead(200, {
-      'Content-Type': 'text/plain'
+    request.setEncoding('utf8');
+
+    request.addListener('data', function(postDataChunk) {
+      postData += postDataChunk;
+      console.log('Recieved POST data trunk ' + postDataChunk);
     });
 
-    route(handle, pathname, response);
+    request.addListener('end', function() {
+      route(handle, pathname, response, postData);
+    });
+
   }
 
   http.createServer(onRequest).listen(PORT);
