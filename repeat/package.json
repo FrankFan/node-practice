@@ -7,7 +7,7 @@
 		"start": "node server.js"
 	},
 	"dependencies": {
-		"connect": "1.9.2"
+		"connect": "3.6.5"
 	},
 	"author": "FrankFan",
 	"liciense": "BSD"
